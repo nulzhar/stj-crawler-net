@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>crawler_stj_net</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Selenium.UndetectedChromeDriver" Version="1.1.1" />
+  </ItemGroup>
+  
+  <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+    <Copy SourceFiles="chromedriver" DestinationFolder="$(OutDir)" />
+  </Target>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <None Update="chromedriver" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
